@@ -17,19 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         window.addEventListener('scroll', () => {
             let currentScrollY = window.scrollY;
+            const isUpOrDown = currentScrollY > lastScrollY;
             
-            if (currentScrollY > lastScrollY) {
-                headerContent.classList.add('hide');
-            } else {
-                headerContent.classList.remove('hide');
-            }
+            isUpOrDown ? headerContent.classList.add('hide') : headerContent.classList.remove('hide');
             
             lastScrollY = currentScrollY;
+            
+            currentScrollY > 30 || document.documentElement.scrollTop > 30 ? header.classList.add('scrolled') : header.classList.remove('scrolled');
         });
 
-        window.addEventListener('scroll', () => {
-            window.scrollY > 30 || document.documentElement.scrollTop > 30 ? header.classList.add('scrolled') : header.classList.remove('scrolled');
-        })
 
         const hamburger = document.querySelector('.hamburger');
         const hamburgerMenu = document.querySelector('.hamburger-menu');
@@ -62,8 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }, index * 60);
 
                     btn.addEventListener('transitionend', (e) => {
-                        if (e.propertyName !== 'opacity') return;
-                        
                         if (!btn.classList.contains('visible')) {
                             hamburgerMenu.classList.add('hidden');
                             header.classList.remove('no-blend');
