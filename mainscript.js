@@ -1,9 +1,36 @@
+import LyraUI from "./scripts/framework.js";
+
+const lyra = LyraUI ? new LyraUI("1.0", "Nathania Anneta") : null;
+
 const icon = document.createElement('link');
 icon.rel = 'website icon';
 icon.href = '/assets/images/lyra.png';
 document.head.appendChild(icon);
 
 document.addEventListener('DOMContentLoaded', () => {
+    lyra.animateOnScroll('.ui-card-people', {
+        animationClass: 'visible',
+        stagger: 0.02
+    })
+
+    const root = document.documentElement;
+    
+    root.addEventListener('mousemove', (e) => {
+        const acrylic = document.querySelector('.acrylic');
+        acrylic.classList.add('visible');
+
+        const rect = root.getBoundingClientRect();
+        const x = e.clientX;
+        const y = e.clientY;
+
+        acrylic.style.left = `${x}px`;
+        acrylic.style.top = `${y}px`;
+    })
+
+    root.addEventListener('mouseleave', (e) => {
+        const acrylic = document.querySelector('.acrylic');
+        acrylic.classList.remove('visible');
+    })
     const hero = document.querySelector('.hero');
     if (!hero) return;
 
