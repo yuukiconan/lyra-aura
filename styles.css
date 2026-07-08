@@ -445,7 +445,7 @@
     }
 
     .parallax-heading {
-        font-size: clamp(2.5rem, -3rem + 16vw, 8rem);
+        font-size: clamp(3.5rem, -3rem + 16vw, 8rem);
     }
 
     .parallax-heading.to-left {
@@ -650,11 +650,11 @@
 .ui-card-people .people-info {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 0px 28px 0px 28px;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px 24px 0px 24px;
     margin: 28px 0;
-    gap: 8px;
+    gap: 0px;
     order: -1;
 }
 
@@ -667,9 +667,10 @@
 }
 
 .ui-card-people .people-info h1 {
-    font-size: 2rem;
+    font-size: 1.85rem;
     font-weight: 500;
     letter-spacing: .62px;
+    width: 100%;
     text-transform: uppercase;
 }
 
@@ -682,14 +683,15 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    width: auto;
     gap: 8px;
 }
 
 .people-actions .btn-outline {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50px;
-    font-size: 30px;
+    font-size: 28px;
 }
 
 .people-actions .btn-outline:hover {
@@ -705,7 +707,7 @@
 .ui-card-people {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity .5s cubic-bezier(0.075, 0.82, 0.165, 1), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: opacity .5s cubic-bezier(0.075, 0.82, 0.165, 1), transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .ui-card-people.visible {
@@ -721,14 +723,14 @@
 
 @media (max-width: 768px) {
     header {
-        padding: 16px 24px;
+        padding: 16px 20px;
     }
     .hero.loaded .hero-center h1 {
         text-align: center;
         font-size: 3rem;
     }
     section, .hamburger-menu {
-        padding-inline: 24px;
+        padding-inline: 20px;
     }
     .hamburger-menu-footer {
         inset: auto 24px 30px 24px;
@@ -748,6 +750,10 @@
     }
     .info-box {
         max-width: 100%;
+    }
+    .stagger-element {
+        transition: opacity .6s;
+        transform: translateY(0);
     }
     .semi-transparent {
         display: none;
