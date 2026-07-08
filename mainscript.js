@@ -37,10 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         hero.classList.add('loaded')
     }, 2000)
-    window.addEventListener('scroll', (e) => {
-        e.preventDefault();
-        
-        console.log(window.scrollY, document.body.scrollTop)
+    window.addEventListener('scroll', () => {
         if (window.scrollY <= 0) {
             hero.classList.remove('loaded');
             hero.classList.add('backToPos');
@@ -49,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hero.classList.remove('backToPos');
             hero.classList.add('loaded');
         }
-    })
+    }, {passive: true});
     history.scrollRestoration = 'manual';
 
     var Lenis = window.Lenis;

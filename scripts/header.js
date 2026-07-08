@@ -86,7 +86,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        hamburger.addEventListener('click', toggleMenuVisibility)
+        hamburger.addEventListener('click', toggleMenuVisibility);
+        
+        let lastScrollY = window.scrollY;
+        
+        window.addEventListener('scroll', () => {
+            let currentScrollY = window.scrollY;
+            
+            if (currentScrollY > lastScrollY) {
+                header.classList.add('hide');
+            } else {
+                header.classList.remove('hide');
+            }
+            
+            lastScrollY = currentScrollY;
+        });
     })
     .catch(err => {
         console.error(err);
