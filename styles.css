@@ -654,7 +654,7 @@
     align-items: center;
     padding: 0px 24px 0px 24px;
     margin: 28px 0;
-    gap: 0px;
+    gap: 8px;
     order: -1;
 }
 
@@ -667,10 +667,10 @@
 }
 
 .ui-card-people .people-info h1 {
-    font-size: 1.85rem;
+    font-size: 1.75em;
     font-weight: 500;
-    letter-spacing: .62px;
-    width: 100%;
+    letter-spacing: .42px;
+    max-width: 90%;
     text-transform: uppercase;
 }
 
