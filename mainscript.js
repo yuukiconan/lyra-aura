@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         hero.classList.add('loaded')
     }, 2000)
+    
     window.addEventListener('scroll', () => {
         if (window.scrollY <= 0) {
             hero.classList.remove('loaded');
