@@ -9,20 +9,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }, index * 300);
         });
     }, 3000);
-
-    const split = new SplitText(".info-box p", { type: "lines" });
-    gsap.from(split.lines, {
-        duration: 1,
-        y: 30,
-        opacity: 0,
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".info-box",
-            start: "top 100%",
-            end: "bottom 100%",
-            scrub: 1,
-            markers: false
-        }
-    })
+    
+    document.fonts.ready.then(() => {
+        const split = new SplitText(".info-box p", { type: "lines" });
+        
+        gsap.from(split.lines, {
+            duration: 0.5,
+            y: 20,
+            opacity: 0,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".info-box",
+                start: "top 150%",
+                end: "bottom 130%",
+                scrub: false,
+                markers: false
+            }
+        });
+    });
 });

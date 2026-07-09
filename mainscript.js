@@ -9,12 +9,6 @@ icon.href = '/assets/images/lyra.png';
 document.head.appendChild(icon);
 
 document.addEventListener('DOMContentLoaded', () => {
-    lyra.animateOnScroll('.ui-card-people', {
-        animationClass: 'visible',
-        stagger: 0.02
-    })
-    
-
     const lenis = new Lenis({
         duration: 2,
         smooth: true,
