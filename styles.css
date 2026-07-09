@@ -409,7 +409,7 @@
     .hero.loaded.only-title {
         height: 35dvh;
     }
-    .hero.loaded.isPeople, .hero.backToPos.isPeople {
+    .hero.loaded.isFixed, .hero.backToPos.isFixed {
         opacity: 0;
         height: 0dvh;
     }
@@ -903,6 +903,17 @@ section.blue {
     }
     .semi-transparent {
         display: none;
+    }
+    .ui-people-box .flex-box-info {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 16px;
+        padding-inline: 20px;
+    }
+    .flex-box-info .info-box-content {
+        text-align: left;
+        max-width: none;
     }
     .footer-heading {
         transform: none;

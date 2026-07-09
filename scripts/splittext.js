@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const hero = document.querySelector('.hero.isPeople');
+    const hero = document.querySelector('.hero.isFixed');
     const uiPeoples = document.querySelectorAll('.ui-people-box .stagger-element');
     
     setTimeout(() => {
