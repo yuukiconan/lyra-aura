@@ -8,22 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(data => {
         document.querySelector('header').innerHTML = data;
-    })
-    .finally(() => {
-        const lenis = new Lenis();
+
         const header = document.querySelector('header');
         let lastScrollY = window.scrollY;
         const headerContent = header.querySelector('.header-content');
         
         window.addEventListener('scroll', () => {
             let currentScrollY = window.scrollY;
-            const isUpOrDown = currentScrollY > lastScrollY;
-            
-            isUpOrDown ? headerContent.classList.add('hide') : headerContent.classList.remove('hide');
+
+            currentScrollY > lastScrollY ? headerContent.classList.add('hide') : headerContent.classList.remove('hide');
             
             lastScrollY = currentScrollY;
             
-            currentScrollY > 30 || document.documentElement.scrollTop > 30 ? header.classList.add('scrolled') : header.classList.remove('scrolled');
         });
 
 
@@ -31,15 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const hamburgerMenu = document.querySelector('.hamburger-menu');
         const staggerElements = document.querySelectorAll('.stagger-element');
         const root = document.documentElement;
+        const lenis = window.lenis;
         
         function openMenu() {
             hamburgerMenu.classList.remove('hidden');
             header.classList.add('no-blend');
-
-            requestAnimationFrame(() => {
-                lenis.stop();
-                root.classList.add('noscroll');
             
+            requestAnimationFrame(() => {
                 staggerElements.forEach((btn, index) => {
                     setTimeout(() => {
                         btn.classList.add('visible');
@@ -62,9 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             hamburgerMenu.classList.add('hidden');
                             header.classList.remove('no-blend');
                             hamburger.textContent = '/ Menu /';
-                            
-                            lenis.start();
-                            root.classList.remove('noscroll');
                         }
                     }, { once: true});
                 })
@@ -74,8 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
         function toggleMenuVisibility() {
             if (hamburgerMenu.classList.contains('hidden')) {
                 hamburger.textContent = '/ Close /';
+                root.classList.add('noscroll');
+                lenis.stop();
                 openMenu();
             } else {
+                lenis.start();
+                root.classList.remove('noscroll');
                 closeMenu();
             }
         }

@@ -1,6 +1,7 @@
 import LyraUI from "./scripts/framework.js";
 
 const lyra = LyraUI ? new LyraUI("1.0", "Nathania Anneta") : null;
+window.lyra = lyra;
 
 const icon = document.createElement('link');
 icon.rel = 'website icon';
@@ -12,30 +13,69 @@ document.addEventListener('DOMContentLoaded', () => {
         animationClass: 'visible',
         stagger: 0.02
     })
+    
+
+    const lenis = new Lenis({
+        duration: 2,
+        smooth: true,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        autoRaf: false,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+    })
+
+    window.lenis = lenis;
+    
+    gsap.registerPlugin(ScrollTrigger);
+    lenis.on('scroll', () => {
+        ScrollTrigger.update();
+    });
+    
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+
+    if (hamburgerMenu) {
+        if (!hamburgerMenu.classList.contains('hidden')) {
+            lenis.stop();
+        } else {
+            lenis.start();
+        }
+        
+    }
+    
+    gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+    })
+    gsap.ticker.lagSmoothing(0);
 
     const root = document.documentElement;
+    const circle = document.createElement('div');
+    circle.className = 'acrylic';
+    root.appendChild(circle);
     
     root.addEventListener('mousemove', (e) => {
-        const acrylic = document.querySelector('.acrylic');
-        acrylic.classList.add('visible');
-
-        const rect = root.getBoundingClientRect();
+        circle.classList.add('visible');
         const x = e.clientX;
         const y = e.clientY;
 
-        acrylic.style.left = `${x}px`;
-        acrylic.style.top = `${y}px`;
+        circle.style.left = `${x}px`;
+        circle.style.top = `${y}px`;
     })
 
-    root.addEventListener('mouseleave', (e) => {
-        const acrylic = document.querySelector('.acrylic');
-        acrylic.classList.remove('visible');
+    root.addEventListener('mouseleave', () => {
+        circle.classList.remove('visible');
     })
+
     const hero = document.querySelector('.hero');
     if (!hero) return;
+    if (!hero.classList.contains('loaded')) lenis.stop();
 
     setTimeout(() => {
         hero.classList.add('loaded')
+        lenis.start();
     }, 2000)
     
     window.addEventListener('scroll', () => {
@@ -50,27 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, {passive: true});
     history.scrollRestoration = 'manual';
 
-    var Lenis = window.Lenis;
-    const lenis = new Lenis({
-        duration: 2,
-        smooth: true,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        autoRaf: false,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-    })
-
-    gsap.registerPlugin(ScrollTrigger);
-    lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-    })
-    gsap.ticker.lagSmoothing(0);
 
     gsap.fromTo('.parallax-heading.to-left', 
         { x: "0%" },
