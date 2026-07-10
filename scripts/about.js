@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = gsap.utils.toArray('.ui-gallery-view');
 
     gsap.to(track, {
-        x: () => -(track.scrollWidth - window.innerWidth),
+        x: () => -(track.scrollWidth - container.clientWidth),
         ease: "none",
         scrollTrigger: {
             trigger: container,
@@ -34,11 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
             scrub: 1,
             snap: {
                 snapTo: 1 / (sections.length - 1),
-                duration: 0.8,
-                delay: 0.5,
+                duration: 0.6,
+                delay: 0.2,
                 ease: "power1.inOut"
             },
-            end: () => "+=" + (track.scrollWidth - window.innerWidth)
+            end: () => "+=" + (track.scrollWidth - container.clientWidth)
         }
     })
 });

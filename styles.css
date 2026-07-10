@@ -191,10 +191,9 @@
         cursor: none;
         overflow: hidden;
     }
-    body { margin: 0; }
+    body { margin: 0; overflow: hidden; }
     header {
         position: fixed;
-        width: 100vw;
         inset: 0 0 auto 0;
         padding: 16px 50px 16px 60px;
         border: none;
@@ -501,7 +500,8 @@
     }
     
     .horizontal-track {
-        padding: 20px 50px;
+        position: relative;
+        padding: 10px 0px;
         display: flex;
         align-items: center;
         height: 100%;
@@ -627,8 +627,9 @@
         background-color: var(--color-surface);
         padding: 0 !important;
     }
-    section.horizontal-container {
-        height: 100vh;
+    .horizontal-container {
+        width: 100%;
+        min-height: 100vh;
         overflow: hidden;
     }
 }
@@ -912,8 +913,7 @@ section.blue {
 
 /* GalleryView UI */
 .ui-gallery-view {
-    flex: 0 0 100vw;
-    padding: 20px 0;
+    flex: 0 0 100%;
 }
 
 .ui-gallery-view img {
