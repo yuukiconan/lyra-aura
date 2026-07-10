@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 2,
         smooth: true,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
         autoRaf: false,
         mouseMultiplier: 1,
         smoothTouch: false,
@@ -45,9 +43,44 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     gsap.ticker.lagSmoothing(0);
 
+    const peopleCards = document.querySelectorAll('.ui-card-people');
+    if (!peopleCards) return;
+
     const root = document.documentElement;
+    
     const circle = document.createElement('div');
+    const circleText = document.createElement('span');
     circle.className = 'acrylic';
+    circleText.className = 'circle-text';
+    peopleCards.forEach(el => {
+        el.setAttribute('data-circle-text', 'Enter');
+        el.setAttribute('tabIndex', '0');
+
+        function redirectToPerson() {
+            if (el.dataset.person) {
+                const personId = el.dataset.person;
+                const targetLink = `/about/${personId}.html`;
+
+                window.location.href = targetLink;
+            }
+        }
+
+        el.addEventListener('click', redirectToPerson);
+        el.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                redirectToPerson();
+            }
+        })
+        el.addEventListener('mouseenter', () => {
+            circleText.textContent = el.dataset.circleText;
+            circleText.classList.add('visible');
+        });
+        el.addEventListener('mouseleave', () => {
+            circleText.classList.remove('visible');
+        })
+    });
+
+    circle.appendChild(circleText);
     root.appendChild(circle);
     
     root.addEventListener('mousemove', (e) => {
@@ -118,4 +151,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     )
+    document.fonts.ready.then(() => {
+        const split = new SplitText(".hero-content h1", { type: "words" });
+        
+        gsap.from(split.words, {
+            duration: 0.6,
+            y: 20,
+            opacity: 0,
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".hero-content",
+                scrub: false,
+                markers: false
+            }
+        });
+    });
 })

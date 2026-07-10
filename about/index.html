@@ -8,9 +8,12 @@
     <script type="module" src="/mainscript.js"></script>
     <script type="module" src="../scripts/framework.js"></script>
     <script src="/scripts/header.js"></script>
+    <script src="/scripts/about.js"></script>
     <script defer src="/scripts/footer.js"></script>
     <script src="https://unpkg.com/lenis@1.3.20/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Lyra Aura</title>
 </head>
@@ -29,13 +32,34 @@
             </section>
         </section>
         <section>
+            <div class="ui-entrance-container">
+                <div class="ui-entrance-index">
+                    <div class="entrance-header">
+                        <h1>We are a team of designers dedicated to creating stunning and effective editorial designs.</h1>
+                    </div>
+                    <div class="entrance-content">
+                        <p>At Lyra Aura, we transform raw data and information into meaningful and memorable visual stories. As your editorial design partner, we understand that every publication has a unique identity. That’s why we provide a creative touch that aligns with your communication goals. Backed by experienced graphic designers, we handle the entire layout process, from typography selection and visual hierarchy to final production, so you can focus on the quality of your content.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <h1 class="section-title">Gallery</h1>
+        <section class="horizontal-container">
+            <div class="ui-gallery-view">
+                <img src="/assets/images/showcases/showcase.webp" alt="showcase 1" class="span-down">
+            </div>
+            <div class="ui-gallery-view"><img src="/assets/images/showcases/showcase.webp" alt="showcase 1"></div>
+            <div class="ui-gallery-view"><img src="/assets/images/showcases/showcase.webp" alt="showcase 1" class="span-down"></div>
+            <div class="ui-gallery-view"><img src="/assets/images/showcases/showcase.webp" alt="showcase 1"></div>
+        </section>
+        <section>
             <div class="parallax-heading-move">
                 <h1 class="parallax-heading to-left">Key People</h1>
                 <h1 class="parallax-heading to-right hidden"></h1>
             </div>
             <h1 class="section-title parallax-heading fade-up hidden"></h1>
             <div class="expressive-grid people-grid">
-                <div class="ui-card-people">
+                <div class="ui-card-people" data-person="neta">
                     <div class="people-avatar">
                         <img src="/assets/images/neta-nobg.webp">
                     </div>
@@ -44,12 +68,9 @@
                             <h1>Nathania Anneta</h1>
                             <span>Main Developer</span>
                         </div>
-                        <div class="people-actions">
-                            <a href="/about/neta.html"><button class="btn-outline">&RightArrow;</button></a>
-                        </div>
                     </div>
                 </div>
-                <div class="ui-card-people">
+                <div class="ui-card-people" data-person="noleen">
                     <div class="people-avatar">
                         <img src="/assets/images/jessica-nobg.webp">
                     </div>
@@ -58,12 +79,9 @@
                             <h1>Jessica Noleen Alka</h1>
                             <span>Co-developer</span>
                         </div>
-                        <div class="people-actions">
-                            <a href="/about/noleen.html"><button class="btn-outline">&RightArrow;</button></a>
-                        </div>
                     </div>
                 </div>
-                <div class="ui-card-people">
+                <div class="ui-card-people" data-person="carin">
                     <div class="people-avatar">
                         <img src="/assets/images/carin-nobg.webp">
                     </div>
@@ -72,12 +90,9 @@
                             <h1>Carin Miracle</h1>
                             <span>Artist</span>
                         </div>
-                        <div class="people-actions">
-                            <a href="/about/carin.html"><button class="btn-outline">&RightArrow;</button></a>
-                        </div>
                     </div>
                 </div>
-                <div class="ui-card-people">
+                <div class="ui-card-people" data-person="sharon">
                     <div class="people-avatar">
                         <img src="/assets/images/sharon-nobg.webp">
                     </div>
@@ -85,9 +100,6 @@
                         <div class="people-name">
                             <h1>Sharon Bethania Djwa</h1>
                             <span>Designer</span>
-                        </div>
-                        <div class="people-actions">
-                            <a href="/about/sharon.html"><button class="btn-outline">&RightArrow;</button></a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +109,7 @@
                 <h1 class="parallax-heading">Contributors</h1>
             </div>
             <div class="expressive-grid people-grid">
-                <div class="ui-card-people">
+                <div class="ui-card-people" data-person="velanie">
                     <div class="people-avatar">
                         <img src="/assets/images/velanie-nobg.webp">
                     </div>
@@ -106,12 +118,9 @@
                             <h1>Velanie Zerlina Agatha</h1>
                             <span>Actress</span>
                         </div>
-                        <div class="people-actions">
-                            <a href="/about/velanie.html"><button class="btn-outline">&RightArrow;</button></a>
-                        </div>
                     </div>
                 </div>
-                <div class="ui-card-people">
+                <div class="ui-card-people"data-person="monique">
                     <div class="people-avatar">
                         <img src="/assets/images/monique-nobg.webp">
                     </div>
@@ -120,12 +129,9 @@
                             <h1>Monique Tri Tunggadewi</h1>
                             <span>Artist</span>
                         </div>
-                        <div class="people-actions">
-                            <a href="/about/monique.html"><button class="btn-outline">&RightArrow;</button></a>
-                        </div>
                     </div>
                 </div>
-                <div class="ui-card-people">
+                <div class="ui-card-people" data-person="mae">
                     <div class="people-avatar">
                         <img src="/assets/images/mae-nobg.webp">
                     </div>
@@ -134,12 +140,9 @@
                             <h1>Rhiannon Ava Mae</h1>
                             <span>Performer</span>
                         </div>
-                        <div class="people-actions">
-                            <a href="/about/mae.html"><button class="btn-outline">&RightArrow;</button></a>
-                        </div>
                     </div>
                 </div>
-                <div class="ui-card-people">
+                <div class="ui-card-people"data-person="reagan">
                     <div class="people-avatar">
                         <img src="/assets/images/reagan.webp">
                     </div>
@@ -148,12 +151,9 @@
                             <h1>Reagan Putra Lobis</h1>
                             <span>Artist</span>
                         </div>
-                        <div class="people-actions">
-                            <a href="/about/reagan.html"><button class="btn-outline">&RightArrow;</button></a>
-                        </div>
                     </div>
                 </div>
-                <div class="ui-card-people">
+                <div class="ui-card-people" data-person="quinsha">
                     <div class="people-avatar">
                         <img src="/assets/images/quinsha-nobg.webp">
                     </div>
@@ -161,9 +161,6 @@
                         <div class="people-name">
                             <h1>Quinsha A. A.</h1>
                             <span>Singer</span>
-                        </div>
-                        <div class="people-actions">
-                            <a href="/about/quinsha.html"><button class="btn-outline">&RightArrow;</button></a>
                         </div>
                     </div>
                 </div>
