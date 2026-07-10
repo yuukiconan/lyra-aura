@@ -22,10 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const container = document.querySelector('.horizontal-container');
+    const track = document.querySelector('.horizontal-track')
     const sections = gsap.utils.toArray('.ui-gallery-view');
 
-    gsap.to(sections, {
-        x: -500 * (sections.length - 1),
+    gsap.to(track, {
+        x: () => -(track.scrollWidth - window.innerWidth),
         ease: "none",
         scrollTrigger: {
             trigger: container,
@@ -33,11 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
             scrub: 1,
             snap: {
                 snapTo: 1 / (sections.length - 1),
-                duration: 0.3,
-                delay: 0.2,
+                duration: 0.8,
+                delay: 0.5,
                 ease: "power1.inOut"
             },
-            end: () => "+=" + window.innerWidth * (sections.length - 1)
+            end: () => "+=" + (track.scrollWidth - window.innerWidth)
         }
     })
 });

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('header').innerHTML = data;
 
         const header = document.querySelector('header');
-        let lastScrollY = window.scrollY;
+        /* let lastScrollY = window.scrollY;
         const headerContent = header.querySelector('.header-content');
         
         window.addEventListener('scroll', () => {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             lastScrollY = currentScrollY;
             
-        });
+        }); */
 
 
         const hamburger = document.querySelector('.hamburger');
