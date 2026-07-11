@@ -1,30 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.video').playbackRate = 1.25;
+
     const hero = document.querySelector('.hero');
     if (!hero) return;
     
     document.fonts.ready.then(() => {
-        const split = new SplitText(".hero-content h1", { type: "words" });
+        const splitHeading = new SplitText(".hero-heading", { type: "chars" });
         
-        gsap.from(split.words, {
+        gsap.from(splitHeading.chars, {
             duration: 1,
             x: -20,
             opacity: 0,
-            stagger: 0.2,
+            stagger: 0.1,
             ease: "power2.out",
-            scrollTrigger: {
-                trigger: ".hero-content",
-                scrub: false,
-                markers: false
-            }
+            delay: 2.5
         });
-        gsap.from('.hero-content img', {
+
+        const splitSlogan = new SplitText(".section-content-at-bottom h1.right", { type: "words" });
+        
+        gsap.from(splitSlogan.words, {
+            duration: 0.6,
             x: -20,
             opacity: 0,
-            duration: 0.6,
-            ease: "power2.out"
-        }
-            
-        )
+            stagger: 0.1,
+            ease: "power2.out",
+            delay: 3
+        });
+        
     });
+
+    gsap.from('.hero-content img', {
+        x: -20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out"
+    })
+
+    gsap.from('.hero-content img', {
+        x: -20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out"
+    })
 
 });

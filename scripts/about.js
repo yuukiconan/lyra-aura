@@ -1,3 +1,6 @@
+window.addEventListener('load', () => {
+    ScrollTrigger.refresh();
+})
 document.addEventListener('DOMContentLoaded', () => {
     document.fonts.ready.then(() => {
         setTimeout(() => {
@@ -35,24 +38,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1900);
     });
 
-    const container = document.querySelector('.horizontal-container');
+    const container = document.querySelector('.horizontal-gallery-wrapper');
     const track = document.querySelector('.horizontal-track')
     const sections = gsap.utils.toArray('.ui-gallery-view');
-    const distance = () => track.scrollWidth - container.clientWidth;
-    const snapPoints = sections.map((_, i) => i / sections.length - 1);
+    const distance = () => track.scrollWidth - window.innerWidth;
 
-    gsap.to(track, {
-        x: () => -distance(),
+    var scrollTween = gsap.to(track, {
+        x: () => -distance() + 'px',
         ease: "none",
         scrollTrigger: {
             trigger: container,
-            start: "top 1%",
             pin: true,
-            scrub: true,
+            start: "top top",
+            scrub: 1,
             invalidateOnRefresh: true,
             anticipatePin: 1,
-            end: () => "+=" + distance(),
-            markers: true
+            snap: {
+                snapTo: 1 / (sections.length - 1),
+                duration: 0.6,
+                ease: "power1.inOut"
+            },
+            end: () => "+=" + distance()
         }
     });
 });

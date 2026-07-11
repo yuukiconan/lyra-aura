@@ -23,21 +23,36 @@
         url('/assets/fonts/Inter-Italic.woff2') format('woff2');
     font-display: swap;
 }
+@font-face {
+    font-family: "Source Serif 4";
+    src: url("/assets/fonts/SourceSerif4-VariableFont_opsz\,wght.woff2") format('woff2'); /* fix sementara */
+    font-display: swap;
+}
+@font-face {
+    font-family: "Source Serif 4";
+    src: url("/assets/fonts/SourceSerif4-Italic.woff2") format('woff2'); /* fix sementara */
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+}
 
 @layer theme, base, components, utilities;
 
 @layer theme {
     :root {
-        --color-bg: #181716;
+        --color-bg: #131211;
         --color-text: #fff5e2;
         --color-text-white: #fcf6f1;
-        --color-surface: #1b1b19;
+        --color-text-gray: rgba(199, 199, 199, 0.8);
+        --color-backdrop: rgba(0, 0, 0, 0.9);
+        --color-surface: #161514;
         --color-primary: #35250F;
-        --color-border-black: #000;
+        --color-border: white;
         --color-border-gray: rgba(100, 100, 100, 0.1);
     
         --sans-serif-dm-sans: "DM Sans", sans-serif;
         --sans-serif-inter: Inter, sans-serif;
+        --serif: "Source Serif 4", sans-serif;
         --monospace: monospace, system-ui;
     }
     ::-webkit-scrollbar {
@@ -48,6 +63,21 @@
         background-color: var(--color-text);
         border-radius: 50px;
     }
+
+    :root.light-mode {
+        --color-bg: #f3f3f3;
+        --color-text: #121212;
+        --color-backdrop: rgba(241, 241, 241, 0.9);
+        --color-surface: #f7f7f7;
+        --color-border: black;
+        --color-text-gray: rgba(100, 100, 100, 0.8);
+        color-scheme: light;
+    }
+
+    :root.light-mode header:has(.hamburger-menu:not(.hidden)) h1 {
+        color: black;
+    }
+
 
     @keyframes fadeInUp {
         0% {
@@ -198,7 +228,7 @@
         padding: 16px 50px 16px 60px;
         border: none;
         z-index: 10;
-        mix-blend-mode: difference;
+        mix-blend-mode: exclusion;
     }
     nav {
         display: flex;
@@ -231,7 +261,7 @@
     }
     section {
         position: relative;
-        padding: 1em 60px;
+        padding: 2em 60px;
     }
     a {
         color: inherit;
@@ -303,6 +333,7 @@
 
     .hamburger {
         background-color: var(--color-surface);
+        color: var(--color-text);
         border-radius: 50px;
         padding: 8px 14px;
         text-transform: uppercase;
@@ -315,10 +346,10 @@
         height: 100dvh;
         position: fixed;
         inset: 0;
-        background-color: rgba(0, 0, 0, 0.9);
+        background-color: var(--color-backdrop);
         backdrop-filter: blur(20px);
         z-index: 1;
-        padding: 70px 58px 50px;
+        padding: 70px 54px 50px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -335,21 +366,41 @@
         gap: 6px;
     }
 
+    .hamburger-menu-content a {
+        width: 100%;
+    }
     .menuButton {
         position: relative;
+        color: var(--color-text);
         width: 100%;
-        padding: 8px 0;
+        padding: 4px 0;
         display: flex;
+        gap: 20px;
         overflow: hidden;
         justify-content: flex-start;
         font-size: clamp(3rem, -3rem + 16vw, 5rem);
+    }
+
+    .menuButton .num {
+        padding: 6px 16px;
+        border: 1px solid var(--color-border);
+        font-size: 20px;
+        border-radius: 50px;
+    }
+
+    .hamburger-menu-content:hover .menuButton {
+        color: var(--color-text-gray)
+    }
+
+    .hamburger-menu-content .menuButton:hover {
+        color: var(--color-text);
     }
     
     .stagger-element {
         width: 100%;
         opacity: 0;
-        transform:translateY(30px);
-        transition: opacity .5s cubic-bezier(0.075, 0.82, 0.165, 1), transform .6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform: translateY(30px);
+        transition: color .5s, opacity .6s cubic-bezier(0.075, 0.82, 0.165, 1), transform .7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .stagger-element.visible {
@@ -362,11 +413,18 @@
         justify-content: space-between;
         position: absolute;
         width: auto;
-        inset: auto 58px 30px 58px;
+        inset: auto 58px 36px 58px;
+    }
+
+    .theme-toggle {
+        background-color: rgba(100, 100, 100, 0.2);
+        color: var(--color-text);
+        border-radius: 50px;
+        padding: 8px 16px;
     }
 
     .hamburger-menu-actions {
-        display: flex; gap: 10px;
+        display: flex; align-items: center; gap: 20px;
     }
 
     .btn-outline {
@@ -411,15 +469,21 @@
         display: none;
         animation: fadeIn 1.2s ease-out;
     }
-    .hero .scroll-down {
+    .scroll-down {
         position: absolute;
         inset: auto 0 24px 0;
         font-family: var(--monospace);
         display: none;
         padding: 0px 16px;
     }
-    .hero.backToPos .scroll-down.blinking {
+    .hero.backToPos .scroll-down.blinking, .scroll-down.blinking {
         animation: blink 3.5s linear infinite;
+    }
+    .section-content-at-bottom .scroll-down {
+        display: inline-block;
+        position: relative;
+        bottom: 0;
+        align-self: flex-end;
     }
     .hero.loaded {
         height: 60dvh;
@@ -483,10 +547,13 @@
     }
     .hero-center h1 {
         display: inline;
+        color: var(--color-text);
         font-size: clamp(3rem, -3rem + 16vw, 8rem);
         transition: font-size .9s cubic-bezier(0.42, 0, 0.22, 1);
     }
     .hero-center img {
+        width: 300px;
+        height: 300px;
         filter: invert(1);
     }
     .hero-center {
@@ -500,15 +567,19 @@
     main:has(.hero) {
         padding-top: 0;
     }
+
+    .horizontal-gallery-wrapper {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 100vh;
+    }
     
     .horizontal-track {
-        position: relative;
-        padding: 10px 0px;
-        display: inline-flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        width: 700vw;
+        display: flex;
+        width: max-content;
         height: 100%;
+        will-change: transform;
     }
 
     .parallax-heading-move {
@@ -520,6 +591,7 @@
     }
 
     .parallax-heading {
+        overflow: hidden;
         font-size: clamp(3.5rem, -3rem + 16vw, 8rem);
     }
 
@@ -631,10 +703,52 @@
         padding: 0 !important;
     }
     .horizontal-container {
-        width: 100vw;
-        height: 100vh;
+        position: relative;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
     }
+    .section-full {
+        width: 100vw;
+        height: 100dvh;
+        padding: 0;
+    }
+    .section-content-at-bottom {
+        background-color: rgba(0, 0, 0, 0.85);
+        position: absolute;
+        inset: auto 0 0 0;
+        width: 100%;
+        height: 100%;
+        padding: 0px 40px 40px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+    .section-content-at-bottom .parallax-heading-move {
+        width: 100%;
+    }
+    .section-content-at-bottom .hero-heading {
+        text-align: center;
+        align-self: center;
+        font-weight: 600;
+        white-space: nowrap;
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 19vw;
+        padding: 36px 0;
+    }
+    .section-content-at-bottom h1.right {
+        margin: 0;
+        font-style: italic;
+    }
+}
+
+.video {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    aspect-ratio: 16 / 9;
 }
 
 .expressive-grid {
@@ -715,8 +829,11 @@
 }
 
 .ui-people-box .info-box-title {
-    font-weight: 600;
+    font-weight: 550;
+    font-family: var(--serif);
+    font-style: italic;
     max-width: 80%;
+    letter-spacing: -4px;
     font-size: clamp(2.4rem, -3rem + 16vw, 5rem);
     text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
     transition: opacity .5s cubic-bezier(0.075, 0.82, 0.165, 1), transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -725,7 +842,7 @@
 .ui-people-box .people-box-name {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 7px;
     width: 100%;
 }
 
@@ -869,7 +986,7 @@ section.blue {
 }
 
 .ui-card-people .people-info span {
-    color: rgba(199, 199, 199, 0.8);
+    color: var(--color-text-gray);
     font-weight: 400;
 }
 
@@ -920,12 +1037,20 @@ section.blue {
 
 /* GalleryView UI */
 .ui-gallery-view {
-    flex: 0 0 100vw;
+    position: relative;
+    display: flex;
+    width: 100vw;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
 }
 
 .ui-gallery-view img {
-    width: 400px;
-    height: 400px;
+    width: 900px;
+    height: 500px;
+    display: block;
     object-fit: contain;
 }
 

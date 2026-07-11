@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const lenis = new Lenis({
         duration: 2,
         smooth: true,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         autoRaf: false,
         mouseMultiplier: 1,
         smoothTouch: false,
