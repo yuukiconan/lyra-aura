@@ -1102,7 +1102,7 @@ section.blue {
     .hamburger-menu-footer {
         inset: auto 24px 30px 24px;
     }
-    .hero, .section-full { padding: 0; }
+    .hero, .section-full, .rm-padding { padding: 0; }
     nav {
         display: none;
     }
@@ -1137,9 +1137,6 @@ section.blue {
     .info-box p {
         overflow: hidden;
         font-size: 16px;
-    }
-    .ui-people-box .flex-box-image img {
-        object-fit: cover
     }
     .hamburger-menu-footer {
         flex-direction: column;
