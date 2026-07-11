@@ -1,44 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('resize', () => {
+        ScrollTrigger.refresh();
+    });
     document.fonts.ready.then(() => {
-        const split = new SplitText(".ui-entrance-index h1", { type: "words" });
-        
-        gsap.from(split.words, {
-            duration: 0.6,
-            y: -20,
-            opacity: 0,
-            stagger: 0.3,
-            ease: "power2.out",
-        });
-
-        const split1 = new SplitText(".ui-entrance-index p", { type: "lines" });
-    
-        gsap.from(split1.lines, {
-            duration: 1,
-            y: -20,
-            opacity: 0,
-            stagger: 0.2,
-            ease: "power2.out",
-        });
+        setTimeout(() => {
+            SplitText.create(".entrance-header h1", {
+                type: "lines",
+                autoSplit: true,
+                onSplit: (self) => {
+                    return gsap.from(self.lines, {
+                        y: -20,
+                        opacity: 0,
+                        duration: 1,
+                        stagger: 0.1
+                    })
+                }
+            });
+            
+            SplitText.create(".ui-entrance-index p", {
+                type: "lines",
+                autoSplit: true,
+                onSplit: (self) => {
+                    return gsap.from(self.lines, {
+                        y: -20,
+                        opacity: 0,
+                        duration: 1,
+                        stagger: 0.1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: ".ui-entrance-index",
+                            start: "top 100%",
+                            end: "bottom top"
+                        }
+                    })
+                }
+            })
+        }, 1900);
     });
 
     const container = document.querySelector('.horizontal-container');
     const track = document.querySelector('.horizontal-track')
     const sections = gsap.utils.toArray('.ui-gallery-view');
+    const distance = () => track.scrollWidth - container.clientWidth;
+    const snapPoints = sections.map((_, i) => i / sections.length - 1);
 
     gsap.to(track, {
-        x: () => -(track.scrollWidth - container.clientWidth),
+        x: () => -distance(),
         ease: "none",
         scrollTrigger: {
             trigger: container,
             pin: true,
             scrub: 1,
-            snap: {
-                snapTo: 1 / (sections.length - 1),
-                duration: 0.6,
-                delay: 0.2,
-                ease: "power1.inOut"
-            },
-            end: () => "+=" + (track.scrollWidth - container.clientWidth)
+            end: () => "+=" + distance()
         }
-    })
+    });
 });

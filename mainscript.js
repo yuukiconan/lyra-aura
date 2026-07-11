@@ -38,10 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
     }
     
-    window.addEventListener('resize', () => {
-        ScrollTrigger.refresh();
-    });
-    
     gsap.ticker.add((time) => {
         lenis.raf(time * 1000);
     })
