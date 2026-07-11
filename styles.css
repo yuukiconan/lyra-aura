@@ -700,7 +700,7 @@
     }
     section.rm-padding {
         background-color: var(--color-surface);
-        padding: 0 !important;
+        padding: 0;
     }
     .horizontal-container {
         position: relative;
@@ -711,7 +711,7 @@
     .section-full {
         width: 100vw;
         height: 100dvh;
-        padding: 0;
+        padding: 0 ;
     }
     .section-content-at-bottom {
         background-color: rgba(0, 0, 0, 0.85);
@@ -1097,7 +1097,7 @@ section.blue {
     .hamburger-menu-footer {
         inset: auto 24px 30px 24px;
     }
-    .hero { padding: 0; }
+    .hero, .section-full { padding: 0; }
     nav {
         display: none;
     }
@@ -1132,6 +1132,11 @@ section.blue {
     .info-box p {
         overflow: hidden;
         font-size: 16px;
+    }
+    .hamburger-menu-footer {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
     }
     .ui-entrance-index {
         max-width: none;
