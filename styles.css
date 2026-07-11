@@ -202,6 +202,7 @@
     body, h1, h2, h3, h4, h5, h6, p, span {
         -webkit-font-smoothing: subpixel-antialiased !important;
         -moz-osx-font-smoothing: grayscale !important;
+        color: var(--color-text);
     }
     p, span, button, input, label, a, li {
         margin: 0;
