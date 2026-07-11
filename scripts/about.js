@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    window.addEventListener('resize', () => {
-        ScrollTrigger.refresh();
-    });
     document.fonts.ready.then(() => {
         setTimeout(() => {
             SplitText.create(".entrance-header h1", {
@@ -49,9 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: "none",
         scrollTrigger: {
             trigger: container,
+            start: "top 1%",
             pin: true,
-            scrub: 1,
-            end: () => "+=" + distance()
+            scrub: true,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+            end: () => "+=" + distance(),
+            markers: true
         }
     });
 });

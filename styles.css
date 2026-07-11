@@ -504,10 +504,10 @@
     .horizontal-track {
         position: relative;
         padding: 10px 0px;
-        display: flex;
+        display: inline-flex;
+        flex-wrap: nowrap;
         align-items: center;
-        gap: 50vw;
-        width: 100%;
+        width: 700vw;
         height: 100%;
     }
 
@@ -926,7 +926,6 @@ section.blue {
 .ui-gallery-view img {
     width: 400px;
     height: 400px;
-    aspect-ratio: 1 / 1;
     object-fit: contain;
 }
 

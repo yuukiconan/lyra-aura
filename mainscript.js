@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     gsap.ticker.add((time) => {
         lenis.raf(time * 1000);
-    })
+    });
     gsap.ticker.lagSmoothing(0);
 
     const peopleCards = document.querySelectorAll('.ui-card-people');
