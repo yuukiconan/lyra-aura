@@ -78,7 +78,6 @@
         color: black;
     }
 
-
     @keyframes fadeInUp {
         0% {
             transform: translateY(30px);
@@ -301,6 +300,7 @@
     }
     .header-left h1 {
         white-space: nowrap;
+        color: white;
         font-weight: 600;
     }
     .header-center {
@@ -827,6 +827,10 @@
     gap: 40px;
     height: 100svh;
     transition: height .6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.ui-people-box * {
+    color: white;
 }
 
 .ui-people-box .info-box-title {
