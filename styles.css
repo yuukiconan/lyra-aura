@@ -74,8 +74,11 @@
         color-scheme: light;
     }
 
-    :root.light-mode header:has(.hamburger-menu:not(.hidden)) h1 {
-        color: black;
+    :root.light-mode .circle-text, :root.light-mode header:has(.hamburger-menu:not(.hidden)) .header-left h1, :root.light-mode .hamburger {
+        filter: invert(1);
+    }
+    :root.light-mode header:has(.hamburger-menu:not(.hidden)) .hamburger {
+        filter: none;
     }
 
     @keyframes fadeInUp {
@@ -175,13 +178,12 @@
         opacity: 0;
         transform: scale(0.9);
         transition: opacity .5s cubic-bezier(0.075, 0.82, 0.165, 1), transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-        color: white;
     }
     .circle-text.visible {
         opacity: 1;
         transform: scale(1);
     }
-    .acrylic:has(.circle-text.visible), .acrylic:hover {
+    .acrylic:has(.circle-text.visible) {
         width: 90px; height: 90px;
     }
 }
@@ -509,7 +511,7 @@
         overflow-y: auto;
     }
     .hero.backToPos .hero-content {
-        background-color: rgba(0, 0, 0, 0.9);
+        background-color: var(--color-backdrop);
     }
     .hero.backToPos .scroll-down {
         display: flex;
@@ -725,6 +727,9 @@
         flex-direction: column;
         justify-content: flex-end;
         align-items: flex-start;
+    }
+    .section-content-at-bottom * {
+        color: var(--color-text-white)
     }
     .section-content-at-bottom .parallax-heading-move {
         width: 100%;
