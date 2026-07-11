@@ -5,10 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const circle = document.querySelector('.acrylic');
     const circleText = circle.querySelector('.circle-text');
 
-    video.addEventListener('loadedmetadata', () => {
-        document.querySelector('.video').playbackRate = 1.25;
-        document.querySelector('.video').currentTime = 7.9;
-    });
+    video.currentTime = 7.9;
 
     firstGlance.addEventListener('mouseenter', () => {
         if (isVideoPlayed.checked) {
