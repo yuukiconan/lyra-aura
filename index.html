@@ -30,14 +30,15 @@
             <section class="hero-content">
                 <div class="hero-center">
                     <div class="flex-container">
-                        <div><img src="/assets/images/Lyra_simple.webp"></div>
+                        <div><img class="logo" src="/assets/images/Lyra_simple.webp"></div>
                     </div>
                     <span class="scroll-down blinking">&downarrow; Scroll down</span>
                 </div>
             </section>
         </section>
-        <section class="section-full">
-            <video class="video" autoplay muted loop preload="metadata" poster="/assets/videos/intro-poster.png">
+        <section class="section-full hero-first-glance" data-circle-text="Pause" data-circle-text-after="Play">
+            <input type="checkbox" id="isVideoPlayed" hidden>
+            <video class="video" autoplay muted loop preload="metadata" poster="/assets/videos/intro-poster.png" >
                 <source src="/assets/videos/intro.mp4">
                 Your browser doesn't support video element.
             </video>
@@ -67,7 +68,7 @@
         <section>
             <h1 class="section-title parallax-heading fade-up">Meet our people</h1>
             <div class="expressive-grid people-grid">
-                <div class="ui-card-people">
+                <div class="ui-card-people" data-person="neta">
                     <div class="people-avatar">
                         <img src="/assets/images/neta-nobg.webp">
                     </div>
@@ -76,12 +77,9 @@
                             <h1>Nathania Anneta</h1>
                             <span>Main Developer</span>
                         </div>
-                        <div class="people-actions">
-                            <button class="btn-outline">&RightArrow;</button>
-                        </div>
                     </div>
                 </div>
-                <div class="ui-card-people">
+                <div class="ui-card-people" data-person="noleen">
                     <div class="people-avatar">
                         <img src="/assets/images/jessica-nobg.webp">
                     </div>
@@ -90,12 +88,9 @@
                             <h1>Jessica Noleen Alka</h1>
                             <span>Co-developer</span>
                         </div>
-                        <div class="people-actions">
-                            <button class="btn-outline">&RightArrow;</button>
-                        </div>
                     </div>
                 </div>
-                <div class="ui-card-people">
+                <div class="ui-card-people" data-person="carin">
                     <div class="people-avatar">
                         <img src="/assets/images/carin-nobg.webp">
                     </div>
@@ -104,12 +99,9 @@
                             <h1>Carin Miracle</h1>
                             <span>Artist</span>
                         </div>
-                        <div class="people-actions">
-                            <button class="btn-outline">&RightArrow;</button>
-                        </div>
                     </div>
                 </div>
-                <div class="ui-card-people">
+                <div class="ui-card-people" data-person="sharon">
                     <div class="people-avatar">
                         <img src="/assets/images/sharon-nobg.webp">
                     </div>
@@ -117,9 +109,6 @@
                         <div class="people-name">
                             <h1>Sharon Bethania Djwa</h1>
                             <span>Designer</span>
-                        </div>
-                        <div class="people-actions">
-                            <button class="btn-outline">&RightArrow;</button>
                         </div>
                     </div>
                 </div>

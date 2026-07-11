@@ -1,5 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('.video').playbackRate = 1.25;
+    const video = document.querySelector('.video');
+    const firstGlance = document.querySelector('.hero-first-glance');
+    const isVideoPlayed = document.getElementById('isVideoPlayed');
+    const circle = document.querySelector('.acrylic');
+    const circleText = circle.querySelector('.circle-text');
+
+    video.addEventListener('loadedmetadata', () => {
+        document.querySelector('.video').playbackRate = 1.25;
+        document.querySelector('.video').currentTime = 7.9;
+    });
+
+    firstGlance.addEventListener('mouseenter', () => {
+        if (isVideoPlayed.checked) {
+            circleText.textContent = firstGlance.dataset.circleTextAfter;
+        } else {
+            circleText.textContent = firstGlance.dataset.circleText;
+        }
+    });
+
+    firstGlance.addEventListener('click', () => {
+        isVideoPlayed.click();
+
+        isVideoPlayed.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                video.pause();
+                circleText.textContent = firstGlance.dataset.circleTextAfter;
+            } else {
+                video.play();
+                circleText.textContent = firstGlance.dataset.circleText;
+            }
+        });
+    })
+
+    firstGlance.addEventListener('mouseleave', () => {
+        circleText.classList.remove('visible');
+        circleText.textContent = '';
+    })
 
     const hero = document.querySelector('.hero');
     if (!hero) return;
@@ -30,17 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     gsap.from('.hero-content img', {
-        x: -20,
+        scale: 0.8,
         opacity: 0,
-        duration: 0.6,
-        ease: "power2.out"
+        duration: 1,
+        ease: "power1.inOut"
     })
 
-    gsap.from('.hero-content img', {
-        x: -20,
-        opacity: 0,
-        duration: 0.6,
-        ease: "power2.out"
-    })
-
+    setTimeout(() => {
+        gsap.to('.hero-content img', {
+            scale: 0,
+            opacity: 0,
+            duration: 1.1,
+            ease: "power1.inOut"
+        })
+    }, 2000)
 });

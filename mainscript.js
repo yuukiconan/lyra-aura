@@ -70,6 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 redirectToPerson();
             }
         })
+    });
+    
+    const texts = document.querySelectorAll('[data-circle-text]');
+    texts.forEach(el => {
         el.addEventListener('mouseenter', () => {
             circleText.textContent = el.dataset.circleText;
             circleText.classList.add('visible');
@@ -77,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.addEventListener('mouseleave', () => {
             circleText.classList.remove('visible');
         })
-    });
+    })
 
     circle.appendChild(circleText);
     root.appendChild(circle);
