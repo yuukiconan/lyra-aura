@@ -28,4 +28,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    const container = document.querySelector('.horizontal-gallery-wrapper');
+    const track = document.querySelector('.horizontal-track')
+    const sections = gsap.utils.toArray('.ui-gallery-view');
+    if (!container || !track) return;
+    const distance = () => track.scrollWidth - window.innerWidth;
+
+    var scrollTween = gsap.to(track, {
+        x: () => -distance() + 'px',
+        ease: "none",
+        scrollTrigger: {
+            trigger: container,
+            pin: true,
+            start: "top top",
+            scrub: 1,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+            snap: {
+                snapTo: 1 / (sections.length - 1),
+                duration: 0.6,
+                ease: "power1.inOut"
+            },
+            end: () => "+=" + distance()
+        }
+    });
 });

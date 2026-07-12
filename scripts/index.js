@@ -77,4 +77,15 @@ document.addEventListener('DOMContentLoaded', () => {
             ease: "power1.inOut"
         })
     }, 2000)
+
+    gsap.from('.parallax-heading.fade-up', 
+        { 
+            opacity: 0, 
+            y: 40, 
+            scrollTrigger: {
+                start: "center center",
+                end: "bottom center",
+            }
+        }
+    )
 });

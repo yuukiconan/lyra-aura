@@ -8,15 +8,17 @@
         </nav>
     </div>
     <div class="header-right">
+        <button class="nav-button" data-dialog-open="search-menu">Search</button>
         <button class="nav-button hamburger">/ Menu /</button>
     </div>
 </div>
 <div class="hamburger-menu hidden">
     <div class="hamburger-menu-content">
-        <button class="stagger-element menuButton"><span class="num">01</span>Explore</button>
-        <button class="stagger-element menuButton"><span class="num">02</span>News</button>
-        <button class="stagger-element menuButton"><span class="num">03</span>Product</button>
-        <a href="/about/"><button class="stagger-element menuButton"><span class="num">04</span>About Us</button></a>
+        <a><button class="stagger-element menuButton"><span class="num">01</span>Projects</button></a>
+        <a><button class="stagger-element menuButton"><span class="num">02</span>Segments</button></a>
+        <a href="/about/"><button class="stagger-element menuButton"><span class="num">03</span>About Us</button></a>
+        <a><button class="stagger-element menuButton"><span class="num">04</span>Magazine</button></a>
+        <a href="/about/"><button class="stagger-element menuButton"><span class="num">05</span>Resources</button></a>
     </div>
     <div class="stagger-element hamburger-menu-footer">
         <div>
@@ -24,11 +26,20 @@
             <button class="theme-toggle">Theme: Dark</button>
         </div>
         <div class="hamburger-menu-actions">
-            /
             <a href="http://">Privacy Policy</a>
             <a href="http://">License</a>
-            <a href="http://">Content reuse</a>
-            /
         </div>
     </div>
 </div> 
+<dialog class="fullscreen search-menu" data-lenis-prevent>
+    <div class="dialog-header">
+        <h1></h1>
+        <button class="close-btn" data-dialog-close><div class="line line-1"></div><div class="line line-2"></div></button>
+    </div>
+    <div class="dialog-content">
+        <input type="search" placeholder="Search content in Lyra...">
+    </div>
+    <div class="dialog-footer">
+
+    </div>
+</dialog>

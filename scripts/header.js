@@ -28,12 +28,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const staggerElements = document.querySelectorAll('.stagger-element');
         const root = document.documentElement;
         const lenis = window.lenis;
+
+        function menuFadeIn() {
+            hamburgerMenu.style.animation = `fadeIn .6s cubic-bezier(0.075, 0.82, 0.165, 1)`;
+
+            hamburgerMenu.addEventListener('animationend', () => {
+                hamburger.disabled = false;
+            })
+        }
         
         function openMenu() {
             hamburgerMenu.classList.remove('hidden');
             header.classList.add('no-blend');
-            
+            hamburger.disabled = true;
+
+            hamburger.textContent = '/ Close /';
             requestAnimationFrame(() => {
+                menuFadeIn();
+
                 staggerElements.forEach((btn, index) => {
                     setTimeout(() => {
                         btn.classList.add('visible');
@@ -42,29 +54,40 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        function menuFadeOut() {
+            hamburgerMenu.style.animation = 'fadeOut .5s cubic-bezier(0.44, 0, 0.22, 1)';
+
+            hamburgerMenu.addEventListener('animationend', () => {
+                if (hamburgerMenu.style.animation.includes('fadeOut')) {
+                    header.classList.remove('no-blend');
+                    hamburgerMenu.style.animation = '';
+                    hamburgerMenu.classList.add('hidden');
+                    hamburger.disabled = false;
+
+                    hamburger.textContent = '/ Menu /';
+                }
+            });
+        }
+
         function closeMenu() {
+            hamburger.disabled = true;
             requestAnimationFrame(() => {
                 const array = Array.from(staggerElements).reverse();
 
                 array.forEach((btn, index) => {
                     setTimeout(() => {
                         btn.classList.remove('visible');
-                    }, index * 60);
+                    }, index * 60)
+                });
 
-                    btn.addEventListener('transitionend', (e) => {
-                        if (!btn.classList.contains('visible')) {
-                            hamburgerMenu.classList.add('hidden');
-                            header.classList.remove('no-blend');
-                            hamburger.textContent = '/ Menu /';
-                        }
-                    }, { once: true});
-                })
+                setTimeout(() => {
+                    menuFadeOut();
+                }, 400)
             });
         }
 
         function toggleMenuVisibility() {
             if (hamburgerMenu.classList.contains('hidden')) {
-                hamburger.textContent = '/ Close /';
                 root.classList.add('noscroll');
                 lenis.stop();
                 openMenu();

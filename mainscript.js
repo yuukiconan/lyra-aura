@@ -119,41 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, {passive: true});
     history.scrollRestoration = 'manual';
-
-
-    gsap.fromTo('.parallax-heading.to-left', 
-        { x: "0%" },
-        { x: "-100%", 
-            scrollTrigger: {
-                start: "top top",
-                end: "bottom center",
-                scrub: 1,
-                marking: false
-            }
-        }
-    )
-    gsap.fromTo('.parallax-heading.to-right', 
-        { x: "0%" },
-        { x: "50%", 
-            scrollTrigger: {
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 1,
-                marking: false
-            }
-        }
-    )
-    gsap.fromTo('.parallax-heading.fade-up', 
-        { opacity: 0, y: "60" },
-        { opacity: 1, y: "-30", 
-            scrollTrigger: {
-                start: "top+=10px",
-                end: "+=2500",
-                scrub: 1,
-                marking: false
-            }
-        }
-    )
     document.fonts.ready.then(() => {
         const split = new SplitText(".hero-content h1", { type: "words" });
         
@@ -169,5 +134,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 markers: false
             }
         });
+    });
+
+    // Dialog handler
+    function openDialog(className) {
+        document.querySelector(`.${className}`)?.showModal();
+        root.classList.add('noscroll');
+        lenis.stop();
+    }
+
+    document.addEventListener('click', (e) => {
+        const dialogOpen = e.target.closest('[data-dialog-open]');
+        if (dialogOpen) {
+            openDialog(dialogOpen.dataset.dialogOpen);
+        }
+
+        const closeBtn = e.target.closest('[data-dialog-close]');
+        const dialog = closeBtn?.closest('dialog');
+        if (closeBtn) {
+            requestAnimationFrame(() => {
+                dialog.style.animation = `fadeOut 350ms cubic-bezier(0.5, 0, 0.75, 0)`;
+                dialog.addEventListener('animationend', () => {
+                    closeBtn.closest('dialog')?.close();
+                    dialog.style.animation = '';
+                    root.classList.add('noscroll');
+                    lenis.start();
+                }, {once: true});
+            })
+        }
     });
 })
