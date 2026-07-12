@@ -139,14 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Dialog handler
     function openDialog(className) {
         document.querySelector(`.${className}`)?.showModal();
-        root.classList.add('noscroll');
-        lenis.stop();
     }
 
     document.addEventListener('click', (e) => {
         const dialogOpen = e.target.closest('[data-dialog-open]');
         if (dialogOpen) {
             openDialog(dialogOpen.dataset.dialogOpen);
+            root.classList.add('noscroll');
+            lenis.stop();
         }
 
         const closeBtn = e.target.closest('[data-dialog-close]');
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 dialog.addEventListener('animationend', () => {
                     closeBtn.closest('dialog')?.close();
                     dialog.style.animation = '';
-                    root.classList.add('noscroll');
+                    root.classList.remove('noscroll');
                     lenis.start();
                 }, {once: true});
             })
