@@ -44,12 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const distance = () => track.scrollWidth - window.innerWidth;
 
     var scrollTween = gsap.to(track, {
-        x: () => -distance() + 'px',
+        x: () => -distance(),
         ease: "none",
         scrollTrigger: {
             trigger: container,
             pin: true,
-            start: "top top",
             scrub: 1,
             invalidateOnRefresh: true,
             anticipatePin: 1,
@@ -58,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 duration: 0.6,
                 ease: "power1.inOut"
             },
-            end: () => "+=" + distance()
+            end: () => `+=${Math.abs(distance())}`
         }
     });
 });
