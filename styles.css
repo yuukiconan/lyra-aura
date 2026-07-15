@@ -752,7 +752,7 @@
     
     .horizontal-track {
         display: flex;
-        width: max-content;
+        width: 500vw;
         height: 100%;
         will-change: transform;
     }
@@ -878,7 +878,6 @@
         padding: 0;
     }
     .horizontal-container {
-        position: relative;
         width: 100%;
         height: 100%;
         overflow: hidden;

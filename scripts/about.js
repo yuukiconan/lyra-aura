@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTrigger: {
             trigger: container,
             pin: true,
+            start: "top top",
             scrub: 1,
             invalidateOnRefresh: true,
             anticipatePin: 1,
