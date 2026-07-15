@@ -28,14 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+});
+
+window.addEventListener('load', () => {
     const container = document.querySelector('.horizontal-gallery-wrapper');
     const track = document.querySelector('.horizontal-track')
-    const sections = gsap.utils.toArray('.ui-gallery-view');
     if (!container || !track) return;
+    const sections = gsap.utils.toArray('.ui-gallery-view');
     const distance = () => track.scrollWidth - window.innerWidth;
 
     var scrollTween = gsap.to(track, {
-        x: () => -distance() + 'px',
+        x: () => -distance(),
         ease: "none",
         scrollTrigger: {
             trigger: container,
@@ -49,7 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 duration: 0.6,
                 ease: "power1.inOut"
             },
-            end: () => "+=" + distance()
+            end: () => `+=${distance()}`
         }
     });
-});
+
+    ScrollTrigger.refresh();
+})
+
+

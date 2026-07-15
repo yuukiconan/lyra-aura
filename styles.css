@@ -573,14 +573,14 @@
         width: 100%;
         overflow: hidden;
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(21px);
         transition: color .5s, opacity .25s cubic-bezier(0.44, 0, 0.22, 1), transform .55s cubic-bezier(0.44, 0, 0.22, 1);
     }
     
     .stagger-element.visible {
         opacity: 1;
         transform: translateY(0);
-        transition: color .5s, opacity .75s cubic-bezier(0.44, 0, 0.22, 1), transform .55s cubic-bezier(0.215, 0.610, 0.355, 1);
+        transition: color .5s, opacity .85s cubic-bezier(0.44, 0, 0.22, 1), transform .55s cubic-bezier(0.215, 0.610, 0.355, 1);
     }
 
     .hamburger-menu-footer {
@@ -588,7 +588,7 @@
         justify-content: space-between;
         position: absolute;
         width: auto;
-        inset: auto 58px 36px 58px;
+        inset: auto 58px 24px 58px;
     }
 
     .theme-toggle {
@@ -1036,6 +1036,7 @@
     display: flex;
     height: 100svh;
     overflow: hidden;
+    background-color: rgba(100, 100, 100, 0.2);
     transition: opacity .5s cubic-bezier(0.075, 0.82, 0.165, 1), transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
@@ -1054,18 +1055,18 @@
 }
 
 .ui-people-box p {
-    width: 100%;
     font-size: 20px;
     line-height: 1.5;
 }
 
 .ui-people-box .flex-box-info {
     position: absolute;
+    left: 20px; right: 20px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 8px;
+    gap: 20px;
     padding: 10px 50px 10px 50px;
     z-index: 2;
 }
@@ -1076,8 +1077,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    text-align: right;
-    max-width: 350px;
+    text-align: left;
 }
 
 section.pink {
@@ -1150,7 +1150,7 @@ section.blue {
 }
 
 .ui-card-people .people-info h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 500;
     letter-spacing: .12px;
     text-transform: uppercase;

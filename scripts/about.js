@@ -1,6 +1,3 @@
-window.addEventListener('load', () => {
-    ScrollTrigger.refresh();
-})
 document.addEventListener('DOMContentLoaded', () => {
     document.fonts.ready.then(() => {
         setTimeout(() => {
@@ -37,11 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         }, 1900);
     });
+});
 
+window.addEventListener('load', () => {
     const container = document.querySelector('.horizontal-gallery-wrapper');
     const track = document.querySelector('.horizontal-track')
     const sections = gsap.utils.toArray('.ui-gallery-view');
     const distance = () => track.scrollWidth - window.innerWidth;
+
 
     var scrollTween = gsap.to(track, {
         x: () => -distance(),
@@ -58,7 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 duration: 0.6,
                 ease: "power1.inOut"
             },
-            end: () => `+=${Math.abs(distance())}`
+            end: () => `+=${distance()}`
         }
     });
-});
+
+    ScrollTrigger.refresh();
+})
+

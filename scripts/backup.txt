@@ -1,0 +1,63 @@
+// css
+.horizontal-gallery-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+}
+
+.horizontal-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.horizontal-track {
+    display: flex;
+    width: 500vw;
+    height: 100%;
+    will-change: transform;
+}
+
+.ui-gallery-view {
+    position: relative;
+    display: flex;
+    width: 100vw;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.ui-gallery-view img {
+    width: 900px;
+    height: 500px;
+    display: block;
+    object-fit: contain;
+}
+
+// JS
+const container = document.querySelector('.horizontal-gallery-wrapper');
+    const track = document.querySelector('.horizontal-track')
+    const sections = gsap.utils.toArray('.ui-gallery-view');
+    const distance = () => track.scrollWidth - window.innerWidth;
+
+    var scrollTween = gsap.to(track, {
+        x: () => -distance(),
+        ease: "none",
+        scrollTrigger: {
+            trigger: container,
+            pin: true,
+            start: "top top",
+            scrub: 1,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+            snap: {
+                snapTo: 1 / (sections.length - 1),
+                duration: 0.6,
+                ease: "power1.inOut"
+            },
+            end: () => `+=${distance()}`
+        }
+    });
