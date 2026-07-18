@@ -1344,6 +1344,12 @@ section.blue {
         text-align: left;
         max-width: none;
     }
+    .people-grid {
+        padding: 0px 10px;
+    }
+    .ui-card-people {
+        width: 100%;
+    }
     .info-box p {
         overflow: hidden;
         font-size: 16px;

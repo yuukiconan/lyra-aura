@@ -101,23 +101,19 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.addEventListener('click', toggleMenuVisibility);
 
         // Dark & Light mode handler
-        const themeCbx = document.getElementById('theme-cbx');
         const themeToggle = document.querySelector('.theme-toggle');
         const theme = localStorage.getItem('theme') === 'true';
 
         if (theme) {
             root.classList.toggle('light-mode', theme);
-            theme ? themeToggle.textContent = "Theme: Light" : themeToggle.textContent = "Theme: Dark";
+            themeToggle.textContent = theme ? "Theme: Light" : "Theme: Dark";
         }
 
         themeToggle.addEventListener('click', () => {
-            themeCbx.click();
-
-            themeCbx.addEventListener('change', () => {
-                root.classList.toggle('light-mode', themeCbx.checked);
-                localStorage.setItem('theme', themeCbx.checked);
-                themeCbx.checked ? themeToggle.textContent = "Theme: Light" : themeToggle.textContent = "Theme: Dark";
-            })
+            const isClick = root.classList.toggle('light-mode');
+            
+            localStorage.setItem('theme', isClick);
+            themeToggle.textContent = isClick ? "Theme: Light" : "Theme: Dark";
         });
     })
     .catch(err => {
