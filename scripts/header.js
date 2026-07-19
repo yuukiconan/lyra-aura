@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 setTimeout(() => {
                     menuFadeOut();
-                }, 400)
+                }, 500)
             });
         }
 

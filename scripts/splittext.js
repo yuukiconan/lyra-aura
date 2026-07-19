@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         uiPeoples.forEach((uiPeople, index) => {
             setTimeout(() => {
                 uiPeople.classList.add('active');
-            }, index * 300);
+            }, index * 100);
         });
     }, 3000);
     
