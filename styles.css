@@ -992,9 +992,7 @@
 }
 
 .people-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    
     gap: 40px;
 }
 
@@ -1134,7 +1132,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 100%;
 }
 .ui-card-people div {
     width: 100%;
@@ -1185,6 +1182,7 @@
 .ui-card-people .people-info p {
     margin: 10px 0;
     font-size: 15px;
+    max-width: 400px;
 }
 
 .ui-card-people .people-actions {
